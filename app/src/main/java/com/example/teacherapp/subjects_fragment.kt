@@ -5,6 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.LinearLayout
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherapp.ViewModel.Subjects_Handler
+import com.example.teacherapp.ViewModel.adapters.Subjects_adapter
+import com.example.teacherapp.ViewModel.factories.Subjects_Factory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +30,9 @@ class subjects_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelList:Subjects_Handler
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +47,29 @@ class subjects_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.subjects_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factoryList = Subjects_Factory((requireNotNull(this.activity).application))
+        viewModelList=ViewModelProvider(requireActivity(),factoryList).get(Subjects_Handler::class.java)
+        val classListAdapter= Subjects_adapter(viewModelList.subjects,viewModelList)
+        viewModelList.subjects.observe(viewLifecycleOwner,{classListAdapter.notifyDataSetChanged()})
+
+        val layoutManager=LinearLayoutManager(view.context)
+
+        view.findViewById<RecyclerView>(R.id.subjectsRecycleView).let {
+            it.adapter=classListAdapter
+        it.layoutManager=layoutManager
+        }
+
+        view.findViewById<Button>(R.id.button_add_subject).apply {
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_subjects_fragment_to_add_subject_fragment)
+            }
+        }
+
     }
 
     companion object {

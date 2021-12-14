@@ -9,7 +9,7 @@ import com.example.teacherapp.entities.Subjects
 abstract class Helper_Database {
     @Database(entities=[Subjects::class], version = 1, exportSchema = false)
     abstract class HelperDatabase: RoomDatabase() {
-        abstract val Helper_Database: Helper_Database
+        abstract val operator_DAO: Operator_DAO
 
         companion object {
             @Volatile

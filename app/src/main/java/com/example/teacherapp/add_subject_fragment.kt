@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherapp.ViewModel.Subjects_Handler
+import com.example.teacherapp.ViewModel.factories.Subjects_Factory
+import com.example.teacherapp.entities.Subjects
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +28,8 @@ class add_subject_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelAdd: Subjects_Handler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +44,20 @@ class add_subject_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.add_subject_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factory_Add = Subjects_Factory((requireNotNull(this.activity).application))
+        viewModelAdd=ViewModelProvider(requireActivity(),factory_Add).get(Subjects_Handler::class.java)
+        view.findViewById<Button>(R.id.button_add_subject).apply {
+            setOnClickListener{
+                val subject=Subjects(0,view.findViewById<EditText>(R.id.subject_name_add).text.toString())
+                viewModelAdd.Add_Subject(subject)
+                view.findNavController().navigate(R.id.action_add_subject_fragment_to_subjects_fragment)
+            }
+        }
     }
 
     companion object {

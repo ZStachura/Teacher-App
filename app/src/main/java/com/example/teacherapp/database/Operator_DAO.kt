@@ -14,7 +14,13 @@ import com.example.teacherapp.entities.List_in_group
 @Dao
 interface Operator_DAO {
 
-    //Select
+    //Subjects
     @Query("SELECT * FROM subjects_table")
     fun GetAllSubjects(): LiveData<List<Subjects>>
+
+    @Insert
+    fun InsertSubject(subjects:Subjects)
+
+    @Delete
+    fun DeleteSubject(subjects: Subjects)
 }
