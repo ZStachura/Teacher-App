@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Teacher Helper</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="add_subject">+ DODAJ PRZEDMIOT</string>
+    <string name="add_subject">+ ADD SUBJECT</string>
 </resources>
