@@ -10,5 +10,4 @@ data class Subjects (
 @ColumnInfo(name = "id")
 var classID: Long = 0L,
 @ColumnInfo(name="name")
-var className: String
-)
+var className: String)

@@ -6,14 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.LinearLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.teacherapp.ViewModel.Subjects_Handler
-import com.example.teacherapp.ViewModel.adapters.Subjects_adapter
-import com.example.teacherapp.ViewModel.factories.Subjects_Factory
+import com.example.teacherapp.ViewModel.adapters.SubjectsAdapter
+import com.example.teacherapp.ViewModel.factories.SubjectsHandler
+import com.example.teacherapp.ViewModel.factories.SubjectsHandlerFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,7 +29,7 @@ class subjects_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var viewModelList:Subjects_Handler
+    private lateinit var viewModelList:SubjectsHandler
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,15 +51,15 @@ class subjects_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factoryList = Subjects_Factory((requireNotNull(this.activity).application))
-        viewModelList=ViewModelProvider(requireActivity(),factoryList).get(Subjects_Handler::class.java)
-        val classListAdapter= Subjects_adapter(viewModelList.subjects,viewModelList)
-        viewModelList.subjects.observe(viewLifecycleOwner,{classListAdapter.notifyDataSetChanged()})
+        val factoryList = SubjectsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelList=ViewModelProvider(requireActivity(),factoryList).get(SubjectsHandler::class.java)
+        val subjectsAdapter= SubjectsAdapter(viewModelList.subjects,viewModelList)
+        viewModelList.subjects.observe(viewLifecycleOwner,{subjectsAdapter.notifyDataSetChanged()})
 
         val layoutManager=LinearLayoutManager(view.context)
 
         view.findViewById<RecyclerView>(R.id.subjectsRecycleView).let {
-            it.adapter=classListAdapter
+            it.adapter=subjectsAdapter
         it.layoutManager=layoutManager
         }
 
