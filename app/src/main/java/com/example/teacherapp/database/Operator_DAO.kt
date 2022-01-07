@@ -19,8 +19,34 @@ interface Operator_DAO {
     fun GetAllSubjects(): LiveData<List<Subjects>>
 
     @Insert
-    fun InsertSubject(subjects:Subjects)
+    fun InsertSubject(subject:Subjects)
 
     @Delete
-    fun DeleteSubject(subjects: Subjects)
+    fun DeleteSubject(subject: Subjects)
+
+    //GROUPS
+    @Query("SELECT * FROM groups_table")
+    fun GetAllGroups(): LiveData<List<Groups>>
+
+    @Insert
+    fun InsertGroup(group: Groups)
+
+    @Delete
+    fun DeleteGroup(group: Groups)
+
+    //STUDENTS
+    @Query("SELECT * FROM students_table")
+    fun GetAllStudents(): LiveData<List<Students>>
+
+    @Insert
+    fun InsertStudent(student: Students)
+
+    @Delete
+    fun DeleteStudent(student: Students)
+
+
+    //STUDENTINGROUP
+
+    //GRADES
+
 }

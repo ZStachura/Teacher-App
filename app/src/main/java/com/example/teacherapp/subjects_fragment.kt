@@ -63,7 +63,7 @@ class subjects_fragment : Fragment() {
         it.layoutManager=layoutManager
         }
 
-        view.findViewById<Button>(R.id.button_add_subject).apply {
+        view.findViewById<Button>(R.id.button_create_subject).apply {
             setOnClickListener{
                 view.findNavController().navigate(R.id.action_subjects_fragment_to_add_subject_fragment)
             }

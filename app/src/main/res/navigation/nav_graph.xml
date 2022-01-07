@@ -29,8 +29,8 @@
         android:label="add_student_fragment"
         tools:layout="@layout/add_student_fragment" >
         <action
-            android:id="@+id/action_add_student_fragment_to_groups_fragment"
-            app:destination="@id/groups_fragment" />
+            android:id="@+id/action_add_student_fragment_to_onegroup_fragment"
+            app:destination="@id/onegroup_fragment" />
     </fragment>
     <fragment
         android:id="@+id/add_subject_fragment"
@@ -53,9 +53,6 @@
             android:id="@+id/action_groups_fragment_to_subjects_fragment"
             app:destination="@id/subjects_fragment" />
         <action
-            android:id="@+id/action_groups_fragment_to_add_student_fragment"
-            app:destination="@id/add_student_fragment" />
-        <action
             android:id="@+id/action_groups_fragment_to_add_group_fragment2"
             app:destination="@id/add_group_fragment" />
     </fragment>
@@ -70,6 +67,9 @@
         <action
             android:id="@+id/action_onegroup_fragment_to_groups_fragment"
             app:destination="@id/groups_fragment" />
+        <action
+            android:id="@+id/action_onegroup_fragment_to_add_student_fragment"
+            app:destination="@id/add_student_fragment" />
     </fragment>
     <fragment
         android:id="@+id/student_fragment"

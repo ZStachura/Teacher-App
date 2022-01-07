@@ -9,6 +9,8 @@ data class List_in_group (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id_st_w_gr")
     var student_group_ID: Long = 0L,
+    @ColumnInfo(name = "id_student")
+    var student_ID: Long = 0L,
     @ColumnInfo(name="id_group")
     var groupID: Long = 0L,
     @ColumnInfo(name="id_subject")
