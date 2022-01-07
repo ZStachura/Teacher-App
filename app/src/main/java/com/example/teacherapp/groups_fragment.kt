@@ -5,6 +5,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import com.example.teacherapp.ViewModel.factories.SubjectsHandler
+import com.example.teacherapp.ViewModel.factories.SubjectsHandlerFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +26,8 @@ class groups_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelSubjects: SubjectsHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +42,14 @@ class groups_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.groups_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factorySubject = SubjectsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelSubjects = ViewModelProvider(requireActivity(), factorySubject).get(SubjectsHandler::class.java)
+        view.findViewById<TextView>(R.id.one_subject_name).text = viewModelSubjects.subjectName
     }
 
     companion object {

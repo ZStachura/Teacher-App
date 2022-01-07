@@ -49,8 +49,8 @@ class add_subject_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factory_Add = SubjectsHandlerFactory((requireNotNull(this.activity).application))
-        viewModelAdd=ViewModelProvider(requireActivity(),factory_Add).get(SubjectsHandler::class.java)
+        val factoryAdd = SubjectsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelAdd=ViewModelProvider(requireActivity(),factoryAdd).get(SubjectsHandler::class.java)
         view.findViewById<Button>(R.id.button_add_subject).apply {
             setOnClickListener{
                 val subject=Subjects(0,view.findViewById<EditText>(R.id.subject_name_add).text.toString())
