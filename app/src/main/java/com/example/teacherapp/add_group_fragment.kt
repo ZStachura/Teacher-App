@@ -5,6 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherapp.ViewModel.factories.GroupsHandler
+import com.example.teacherapp.ViewModel.factories.GroupsHandlerFactory
+import com.example.teacherapp.ViewModel.factories.SubjectsHandler
+import com.example.teacherapp.ViewModel.factories.SubjectsHandlerFactory
+import com.example.teacherapp.entities.Groups
+import com.example.teacherapp.entities.Subjects
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +31,9 @@ class add_group_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelAdd: GroupsHandler
+    private lateinit var subjectView: SubjectsHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +48,23 @@ class add_group_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.add_group_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factorySubject = SubjectsHandlerFactory((requireNotNull(this.activity).application))
+        subjectView = ViewModelProvider(requireActivity(), factorySubject).get(SubjectsHandler::class.java)
+
+        val factoryAdd = GroupsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GroupsHandler::class.java)
+        view.findViewById<Button>(R.id.button_add_group).apply {
+            setOnClickListener{
+                val group= Groups(0,view.findViewById<EditText>(R.id.group_name_add).text.toString(), subjectView.subjectName)
+                viewModelAdd.AddGroup(group)
+                view.findNavController().navigate(R.id.action_add_group_fragment_to_groups_fragment2)
+            }
+        }
     }
 
     companion object {

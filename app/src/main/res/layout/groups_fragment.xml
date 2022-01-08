@@ -39,16 +39,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/one_subject_name"
-        app:layout_constraintBottom_toTopOf="@+id/button_create_student"/>
+        app:layout_constraintBottom_toTopOf="@+id/button_delete_subject"/>
 
     <Button
-        android:id="@+id/button_create_student"
+        android:id="@+id/button_delete_subject"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="50dp"
         android:background="@null"
         android:fontFamily="@font/rasa"
-        android:text="@string/add_student"
+        android:text="@string/delete_subject"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/groupsRecycleView"
@@ -67,7 +68,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create_student"
+        app:layout_constraintTop_toBottomOf="@+id/button_delete_subject"
         android:background="@null"/>
 
     <ImageView

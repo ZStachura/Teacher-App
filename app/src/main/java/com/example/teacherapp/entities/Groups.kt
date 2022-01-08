@@ -11,5 +11,5 @@ data class Groups (
     var groupID: Long = 0L,
     @ColumnInfo(name="group_name")
     var groupName: String,
-    @ColumnInfo(name="subject_id")
-    var subjectID: Long = 0L )
+    @ColumnInfo(name="subject_name")
+    var subjectNam: String? )

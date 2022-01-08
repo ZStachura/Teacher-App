@@ -5,6 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherapp.ViewModel.factories.GroupsHandler
+import com.example.teacherapp.ViewModel.factories.GroupsHandlerFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +27,8 @@ class onegroup_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelGroups: GroupsHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +43,28 @@ class onegroup_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.onegroup_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factoryGroup = GroupsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelGroups = ViewModelProvider(requireActivity(), factoryGroup).get(GroupsHandler::class.java)
+        view.findViewById<TextView>(R.id.group_name).text = viewModelGroups.groupName
+
+
+        view.findViewById<Button>(R.id.button_delete_group).apply{
+            setOnClickListener {
+                viewModelGroups.DeleteGroup(viewModelGroups.group)
+                view.findNavController().navigate(R.id.action_onegroup_fragment_to_groups_fragment)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_create_student).apply {
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_onegroup_fragment_to_add_student_fragment)
+            }
+        }
     }
 
     companion object {

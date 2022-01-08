@@ -25,8 +25,11 @@ interface Operator_DAO {
     fun DeleteSubject(subject: Subjects)
 
     //GROUPS
-    @Query("SELECT * FROM groups_table")
+    @Query("SELECT * FROM groups_table INNER JOIN subjects_table WHERE subjects_table.id == groups_table.subject_name")
     fun GetAllGroups(): LiveData<List<Groups>>
+
+    @Query("SELECT * FROM groups_table")
+    fun GetGroups(): LiveData<List<Groups>>
 
     @Insert
     fun InsertGroup(group: Groups)
