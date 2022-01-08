@@ -59,26 +59,43 @@
         app:layout_constraintTop_toBottomOf="@id/one_student_name" />
 
     <Button
-        android:id="@+id/button_create_student"
+        android:id="@+id/button_add_grade"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="50dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="40dp"
         android:background="@null"
         android:fontFamily="@font/rasa"
         android:text="@string/add_grade"
+        android:textAlignment="viewStart"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_delete_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/one_student_album" />
+
+    <Button
+        android:id="@+id/button_delete_student"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginStart="50dp"
+        android:background="@null"
+        android:fontFamily="@font/rasa"
+        android:text="@string/delete_student"
+        android:textColor="@color/white"
         android:textAlignment="viewStart"
         android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/gradesRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/one_student_album" />
+        app:layout_constraintTop_toBottomOf="@+id/button_add_grade" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gradesRecycleView"
         android:layout_width="304dp"
-        android:layout_height="506dp"
+        android:layout_height="446dp"
         android:layout_marginStart="53dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="54dp"
@@ -86,6 +103,18 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create_student" />
+        app:layout_constraintTop_toBottomOf="@+id/button_delete_student" />
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="91dp"
+        android:layout_marginBottom="30dp"
+        android:src="@drawable/logoth"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/gradesRecycleView"
+        app:layout_constraintVertical_bias="0.885" />
 </androidx.constraintlayout.widget.ConstraintLayout>

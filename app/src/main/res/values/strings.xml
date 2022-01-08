@@ -13,6 +13,7 @@
     <string name="new_student">NEW STUDENT</string>
     <string name="student_name">STUDENT NAME</string>
     <string name="student_surname">STUDENT SURNAME</string>
+    <string name="delete_student">- DELETE STUDENT</string>
     <string name="student_id">STUDENTS ALBUM NUMBER</string>
     <string name="add_grade">+ ADD GRADE</string>
     <string name="new_grade">NEW GRADE</string>
