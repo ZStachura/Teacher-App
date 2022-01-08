@@ -5,6 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherapp.ViewModel.factories.StudentsHandler
+import com.example.teacherapp.ViewModel.factories.StudentsHandlerFactory
+import com.example.teacherapp.ViewModel.factories.SubjectsHandler
+import com.example.teacherapp.ViewModel.factories.SubjectsHandlerFactory
+import com.example.teacherapp.entities.Students
+import com.example.teacherapp.entities.Subjects
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +31,8 @@ class add_student_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelAdd: StudentsHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +47,20 @@ class add_student_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.add_student_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factoryAdd = StudentsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(StudentsHandler::class.java)
+        view.findViewById<Button>(R.id.button_add_student).apply {
+            setOnClickListener{
+                val student= Students(0,view.findViewById<EditText>(R.id.student_id_add).text.toString(),view.findViewById<EditText>(R.id.student_name_add).text.toString(),view.findViewById<EditText>(R.id.student_surname_add).text.toString(),0)
+                viewModelAdd.AddStudent(student)
+                view.findNavController().navigate(R.id.action_add_student_fragment_to_onegroup_fragment)
+            }
+        }
     }
 
     companion object {

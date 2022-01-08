@@ -9,7 +9,11 @@ data class Students (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var studentID: Long = 0L,
+    @ColumnInfo(name="album")
+    var album: String,
     @ColumnInfo(name="name")
     var studentName: String,
     @ColumnInfo(name="surname")
-    var studentsSurname: String)
+    var studentsSurname: String,
+    @ColumnInfo(name = "groupId")
+    var group_id: Long =0L)

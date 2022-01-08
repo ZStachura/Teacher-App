@@ -9,8 +9,11 @@ import android.widget.Button
 import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.teacherapp.ViewModel.factories.GroupsHandler
-import com.example.teacherapp.ViewModel.factories.GroupsHandlerFactory
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherapp.ViewModel.adapters.StudentsAdapter
+import com.example.teacherapp.ViewModel.adapters.SubjectsAdapter
+import com.example.teacherapp.ViewModel.factories.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +31,7 @@ class onegroup_fragment : Fragment() {
     private var param2: String? = null
 
     private lateinit var viewModelGroups: GroupsHandler
+    private lateinit var viewModelStudents: StudentsHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,6 +55,18 @@ class onegroup_fragment : Fragment() {
         val factoryGroup = GroupsHandlerFactory((requireNotNull(this.activity).application))
         viewModelGroups = ViewModelProvider(requireActivity(), factoryGroup).get(GroupsHandler::class.java)
         view.findViewById<TextView>(R.id.group_name).text = viewModelGroups.groupName
+
+        val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelStudents=ViewModelProvider(requireActivity(),factoryStudent).get(StudentsHandler::class.java)
+        val studentsAdapter= StudentsAdapter(viewModelStudents.students,viewModelStudents)
+        viewModelStudents.students.observe(viewLifecycleOwner,{studentsAdapter.notifyDataSetChanged()})
+
+        val layoutManager= LinearLayoutManager(view.context)
+
+        view.findViewById<RecyclerView>(R.id.studentsRecycleView).let {
+            it.adapter=studentsAdapter
+            it.layoutManager=layoutManager
+        }
 
 
         view.findViewById<Button>(R.id.button_delete_group).apply{
