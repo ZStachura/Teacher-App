@@ -5,6 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherapp.ViewModel.adapters.GroupsAdapter
+import com.example.teacherapp.ViewModel.factories.GroupsHandler
+import com.example.teacherapp.ViewModel.factories.GroupsHandlerFactory
+import com.example.teacherapp.ViewModel.factories.SubjectsHandler
+import com.example.teacherapp.ViewModel.factories.SubjectsHandlerFactory
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -5,6 +5,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import com.example.teacherapp.ViewModel.factories.*
+import com.example.teacherapp.entities.Grades
+import com.example.teacherapp.entities.Students
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +28,9 @@ class add_grade_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelStudent: StudentsHandler
+    private lateinit var viewModelAdd: GradesHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +45,23 @@ class add_grade_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.add_grade_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelStudent = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
+
+        val factoryAdd = GradesHandlerFactory((requireNotNull(this.activity).application))
+        viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GradesHandler::class.java)
+        view.findViewById<Button>(R.id.button_add_grade).apply {
+            setOnClickListener{
+                val grade= Grades(0,viewModelStudent.student.studentID.toInt(),findViewById<EditText>(R.id.grade_add).toString(),findViewById<EditText>(R.id.why_grade).toString())
+                viewModelAdd.AddGrade(grade)
+                view.findNavController().navigate(R.id.action_add_grade_fragment_to_student_fragment)
+            }
+        }
     }
 
     companion object {

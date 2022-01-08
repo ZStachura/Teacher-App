@@ -23,12 +23,12 @@ class StudentsHandler(application: Application):AndroidViewModel(application) {
         students = operatorDao.GetAllStudents()
         student = Students(0,"","","",0)
     }
-    fun AddStudent(students: Students) {
+    fun AddStudent(student: Students) {
         viewModelScope.launch(Dispatchers.IO) {
             operatorDao.InsertStudent(student)
         }
     }
-    fun DeleteStudent(students: Students){
+    fun DeleteStudent(student: Students){
         viewModelScope.launch(Dispatchers.IO){
             operatorDao.DeleteStudent(student)
         }

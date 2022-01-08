@@ -9,9 +9,9 @@ data class Grades (
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
     var gradeID: Long = 0L,
-    @ColumnInfo(name="id_st_in_gr")
-    var st_in_gr_id: Long = 0L,
+    @ColumnInfo(name="id_student")
+    var student_id: Int,
     @ColumnInfo(name="grade")
-    var grade: Int,
+    var grade: String,
     @ColumnInfo(name="why_grade")
     var why_grade: String)

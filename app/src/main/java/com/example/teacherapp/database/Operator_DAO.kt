@@ -52,4 +52,13 @@ interface Operator_DAO {
 
     //GRADES
 
+    @Query("SELECT * FROM grades_table")
+    fun GetAllGrades(): LiveData<List<Grades>>
+
+    @Insert
+    fun InsertGrade(grades: Grades)
+
+    @Delete
+    fun DeleteGrade(grades: Grades)
+
 }

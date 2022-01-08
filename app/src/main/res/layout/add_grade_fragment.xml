@@ -24,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <TextView
+    <EditText
         android:id="@+id/grade_add"
         android:layout_width="355dp"
         android:layout_height="100dp"
@@ -37,14 +37,14 @@
         android:text="@string/grade_value"
         android:textAlignment="center"
 
-        app:layout_constraintBottom_toTopOf="@+id/why_grade_add"
+        app:layout_constraintBottom_toTopOf="@+id/why_grade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView"
         tools:ignore="TextContrastCheck" />
 
-    <TextView
-        android:id="@+id/why_grade_add"
+    <EditText
+        android:id="@+id/why_grade"
         android:layout_width="355dp"
         android:layout_height="100dp"
         android:layout_marginStart="30dp"

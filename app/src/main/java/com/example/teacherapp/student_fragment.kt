@@ -5,6 +5,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherapp.ViewModel.adapters.GradesAdapter
+import com.example.teacherapp.ViewModel.adapters.GroupsAdapter
+import com.example.teacherapp.ViewModel.adapters.StudentsAdapter
+import com.example.teacherapp.ViewModel.factories.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -21,6 +31,9 @@ class student_fragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
 
+    private lateinit var viewModelStudents: StudentsHandler
+    private lateinit var viewModelGrades :GradesHandler
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -35,6 +48,41 @@ class student_fragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.student_fragment, container, false)
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelStudents = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
+        view.findViewById<TextView>(R.id.one_student_surname).text = viewModelStudents.studentSurname
+        view.findViewById<TextView>(R.id.one_student_name).text = viewModelStudents.studentName
+        view.findViewById<TextView>(R.id.one_student_album).text = viewModelStudents.album
+
+        val factoryGrade = GradesHandlerFactory((requireNotNull(this.activity).application))
+        viewModelGrades=ViewModelProvider(requireActivity(),factoryGrade).get(GradesHandler::class.java)
+        val gradesAdapter= GradesAdapter(viewModelGrades.grades,viewModelGrades)
+        viewModelGrades.grades.observe(viewLifecycleOwner,{gradesAdapter.notifyDataSetChanged()})
+
+        val layoutManager= LinearLayoutManager(view.context)
+
+        view.findViewById<RecyclerView>(R.id.gradesRecycleView).let {
+            it.adapter=gradesAdapter
+            it.layoutManager=layoutManager
+        }
+
+        view.findViewById<Button>(R.id.button_delete_student).apply{
+            setOnClickListener {
+                viewModelStudents.DeleteStudent(viewModelStudents.student)
+                view.findNavController().navigate(R.id.action_student_fragment_to_onegroup_fragment)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_create_grade).apply {
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_student_fragment_to_add_grade_fragment)
+            }
+        }
     }
 
     companion object {

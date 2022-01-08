@@ -18,7 +18,7 @@
         android:text="@string/student_surname"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="60sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +35,7 @@
         android:text="@string/student_name"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="40sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -59,7 +59,7 @@
         app:layout_constraintTop_toBottomOf="@id/one_student_name" />
 
     <Button
-        android:id="@+id/button_add_grade"
+        android:id="@+id/button_create_grade"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="50dp"
@@ -90,17 +90,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_add_grade" />
+        app:layout_constraintTop_toBottomOf="@+id/button_create_grade" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gradesRecycleView"
         android:layout_width="304dp"
-        android:layout_height="446dp"
+        android:layout_height="326dp"
         android:layout_marginStart="53dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="54dp"
         android:background="@null"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_delete_student" />

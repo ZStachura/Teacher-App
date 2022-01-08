@@ -32,6 +32,7 @@ class StudentsAdapter(private val students: LiveData<List<Students>>, private va
         holder.myView.setOnClickListener(){
             viewModel.studentName = students.value?.get(position)?.studentName
             viewModel.studentSurname = students.value?.get(position)?.studentsSurname
+            viewModel.album=students.value?.get(position)?.album
             viewModel.student = Students(students.value?.get(position)?.studentID!!, students.value?.get(position)?.album!! ,students.value?.get(position)?.studentName!!,students.value?.get(position)?.studentsSurname!!,students.value?.get(position)?.group_id!! )
             holder.myView.findNavController().navigate(R.id.action_onegroup_fragment_to_student_fragment)
         }

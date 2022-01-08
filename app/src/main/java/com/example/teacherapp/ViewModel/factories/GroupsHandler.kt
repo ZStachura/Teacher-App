@@ -24,12 +24,12 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
         group = Groups(0,"", "")
     }
 
-    fun AddGroup(groups: Groups) {
+    fun AddGroup(group: Groups) {
         viewModelScope.launch(Dispatchers.IO) {
             operatorDAO.InsertGroup(group)
         }
     }
-    fun DeleteGroup(groups: Groups){
+    fun DeleteGroup(group: Groups){
         viewModelScope.launch(Dispatchers.IO){
             operatorDAO.DeleteGroup(group)
         }
