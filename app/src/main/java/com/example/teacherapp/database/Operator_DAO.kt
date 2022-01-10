@@ -45,12 +45,6 @@ interface Operator_DAO {
     @Query("SELECT * FROM students_table WHERE students_table.groupId = :group ORDER BY students_table.surname ASC")
     fun GetGroupStudent(group: Long): LiveData<List<Students>>
 
-    @Query("SELECT * FROM students_table WHERE students_table.album != :idalbum AND students_table.groupId != :idgroup")
-    fun GetNewStudent(idalbum: String, idgroup: Long): LiveData<List<Students>>
-
-    @Query("SELECT EXISTS (SELECT * FROM students_table WHERE students_table.album != :idalbum)")
-    fun SameStudent(idalbum: String): Boolean
-
     @Insert
     fun InsertStudent(student: Students)
 

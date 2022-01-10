@@ -9,8 +9,6 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
-import com.example.teacherapp.ViewModel.adapters.GroupsAdapter
-import com.example.teacherapp.ViewModel.adapters.StudentsAdapter
 import com.example.teacherapp.ViewModel.factories.*
 import com.example.teacherapp.entities.Students
 import com.example.teacherapp.entities.Subjects
@@ -56,13 +54,11 @@ class add_student_fragment : Fragment() {
         viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(StudentsHandler::class.java)
         val factoryGroup = GroupsHandlerFactory((requireNotNull(this.activity).application))
         viewModelGroup= ViewModelProvider(requireActivity(),factoryGroup).get(GroupsHandler::class.java)
-
         view.findViewById<Button>(R.id.button_add_student).apply {
             setOnClickListener{
-                if(!viewModelAdd.IsStudent(view.findViewById<EditText>(R.id.student_id_add).text.toString())){
                 val student= Students(0,view.findViewById<EditText>(R.id.student_id_add).text.toString(),view.findViewById<EditText>(R.id.student_name_add).text.toString(),view.findViewById<EditText>(R.id.student_surname_add).text.toString(),viewModelGroup.group.groupID)
                 viewModelAdd.AddStudent(student)
-                view.findNavController().navigate(R.id.action_add_student_fragment_to_onegroup_fragment)}
+                view.findNavController().navigate(R.id.action_add_student_fragment_to_onegroup_fragment)
             }
         }
     }
