@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.teacherapp.ViewModel.adapters.GradesAdapter
 import com.example.teacherapp.ViewModel.factories.*
-import com.example.teacherapp.entities.Students
-import com.example.teacherapp.entities.Subjects
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,16 +21,16 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [add_student_fragment.newInstance] factory method to
+ * Use the [Grade_details.newInstance] factory method to
  * create an instance of this fragment.
  */
-class add_student_fragment : Fragment() {
+class Grade_details : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var viewModelAdd: StudentsHandler
-    private lateinit var viewModelGroup: GroupsHandler
+    private lateinit var viewModelGrades : GradesHandler
+    private lateinit var viewModelStudent: StudentsHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -44,21 +45,32 @@ class add_student_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.add_student_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_grade_details, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val factoryAdd = StudentsHandlerFactory((requireNotNull(this.activity).application))
-        viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(StudentsHandler::class.java)
-        val factoryGroup = GroupsHandlerFactory((requireNotNull(this.activity).application))
-        viewModelGroup= ViewModelProvider(requireActivity(),factoryGroup).get(GroupsHandler::class.java)
-        view.findViewById<Button>(R.id.button_add_student).apply {
+        val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
+        viewModelStudent = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
+
+        val factoryGrade = GradesHandlerFactory((requireNotNull(this.activity).application))
+        viewModelGrades= ViewModelProvider(requireActivity(),factoryGrade).get(GradesHandler::class.java)
+
+        view.findViewById<TextView>(R.id.student_name_grade).text = viewModelStudent.studentSurname
+        view.findViewById<TextView>(R.id.grade_value_grade).text = viewModelGrades.gradeValue
+        view.findViewById<TextView>(R.id.task_name_grade).text = viewModelGrades.whyGrade
+
+        view.findViewById<Button>(R.id.button_delete_grade).apply{
+            setOnClickListener {
+                viewModelGrades.DeleteGrade(viewModelGrades.grade)
+                view.findNavController().navigate(R.id.action_grade_details_to_student_fragment)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_back_grade).apply{
             setOnClickListener{
-                val student= Students(0,view.findViewById<EditText>(R.id.student_id_add).text.toString(),view.findViewById<EditText>(R.id.student_name_add).text.toString(),view.findViewById<EditText>(R.id.student_surname_add).text.toString(),viewModelGroup.group.groupID)
-                viewModelAdd.AddStudent(student)
-                view.findNavController().navigate(R.id.action_add_student_fragment_to_onegroup_fragment)
+                view.findNavController().navigate(R.id.action_grade_details_to_student_fragment)
             }
         }
     }
@@ -70,12 +82,12 @@ class add_student_fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment add_student_fragment.
+         * @return A new instance of fragment Grade_details.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            add_student_fragment().apply {
+            Grade_details().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

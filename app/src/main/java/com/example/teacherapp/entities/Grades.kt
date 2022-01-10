@@ -10,7 +10,7 @@ data class Grades (
     @ColumnInfo(name = "id")
     var gradeID: Long = 0L,
     @ColumnInfo(name="id_student")
-    var student_id: Int,
+    var student_id: Long,
     @ColumnInfo(name="grade")
     var grade: String,
     @ColumnInfo(name="why_grade")

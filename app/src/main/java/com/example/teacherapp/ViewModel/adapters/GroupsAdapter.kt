@@ -31,7 +31,7 @@ class GroupsAdapter(private val groups: LiveData<List<Groups>>, private val view
         holder.textViewName.text = groups.value?.get(position)?.groupName
         holder.myView.setOnClickListener(){
             viewModel.groupName = groups.value?.get(position)?.groupName
-            viewModel.group = Groups(groups.value?.get(position)?.groupID!!, groups.value?.get(position)?.groupName!!,groups.value?.get(position)?.subjectNam!!)
+            viewModel.group = Groups(groups.value?.get(position)?.groupID!!, groups.value?.get(position)?.groupName!!,groups.value?.get(position)?.subjectID!!)
             holder.myView.findNavController().navigate(R.id.action_groups_fragment_to_onegroup_fragment)
         }
     }

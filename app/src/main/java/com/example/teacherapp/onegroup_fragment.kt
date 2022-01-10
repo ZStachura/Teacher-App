@@ -58,8 +58,9 @@ class onegroup_fragment : Fragment() {
 
         val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
         viewModelStudents=ViewModelProvider(requireActivity(),factoryStudent).get(StudentsHandler::class.java)
-        val studentsAdapter= StudentsAdapter(viewModelStudents.students,viewModelStudents)
-        viewModelStudents.students.observe(viewLifecycleOwner,{studentsAdapter.notifyDataSetChanged()})
+        val studentsAdapter= StudentsAdapter(viewModelStudents.GetThatStudents(viewModelGroups.group.groupID),viewModelStudents)
+        viewModelStudents.currentstudents.observe(viewLifecycleOwner,{studentsAdapter.notifyDataSetChanged()})
+        println(viewModelStudents.currentstudents.value?.size)
 
         val layoutManager= LinearLayoutManager(view.context)
 
@@ -79,6 +80,12 @@ class onegroup_fragment : Fragment() {
         view.findViewById<Button>(R.id.button_create_student).apply {
             setOnClickListener{
                 view.findNavController().navigate(R.id.action_onegroup_fragment_to_add_student_fragment)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_back_group).apply{
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_onegroup_fragment_to_groups_fragment)
             }
         }
     }

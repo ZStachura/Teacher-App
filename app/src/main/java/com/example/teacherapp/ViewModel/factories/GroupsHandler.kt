@@ -18,10 +18,14 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
     var subjectNam:String?=""
     var group :Groups
     val groups: LiveData<List<Groups>>
+    var currentgroups: LiveData<List<Groups>>
+    var currentSubject: Subjects
     init {
         operatorDAO=HelperDatabase.getInstance(application).operatorDao
         groups = operatorDAO.GetGroups()
-        group = Groups(0,"", "")
+        currentgroups=groups
+        currentSubject=Subjects(0L,"")
+        group = Groups(0L,"", 0L)
     }
 
     fun AddGroup(group: Groups) {
@@ -33,5 +37,9 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             operatorDAO.DeleteGroup(group)
         }
+    }
+    fun GetThatGroups(idsubject: Long):LiveData<List<Groups>>{
+        currentgroups=operatorDAO.GetSubjectGroup(idsubject)
+        return currentgroups
     }
 }

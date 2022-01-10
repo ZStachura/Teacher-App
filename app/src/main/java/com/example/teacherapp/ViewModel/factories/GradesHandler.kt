@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.teacherapp.database.HelperDatabase
 import com.example.teacherapp.database.Operator_DAO
 import com.example.teacherapp.entities.Grades
+import com.example.teacherapp.entities.Groups
 import com.example.teacherapp.entities.Students
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -17,10 +18,12 @@ class GradesHandler(application: Application): AndroidViewModel(application) {
     var whyGrade:String? = ""
     var grade: Grades
     val grades: LiveData<List<Grades>>
+    var currentgrades: LiveData<List<Grades>>
     init{
         operatorDao= HelperDatabase.getInstance(application).operatorDao
         grades = operatorDao.GetAllGrades()
-        grade = Grades(0,0,"","")
+        currentgrades=grades
+        grade = Grades(0L,0L,"","")
     }
     fun AddGrade(grades: Grades) {
         viewModelScope.launch(Dispatchers.IO) {
@@ -31,5 +34,9 @@ class GradesHandler(application: Application): AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             operatorDao.DeleteGrade(grades)
         }
+    }
+    fun GetThatGrades(idstudent: Long):LiveData<List<Grades>>{
+        currentgrades=operatorDao.GetGradeStudent(idstudent)
+        return currentgrades
     }
 }

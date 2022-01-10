@@ -57,7 +57,7 @@ class add_grade_fragment : Fragment() {
         viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GradesHandler::class.java)
         view.findViewById<Button>(R.id.button_add_grade).apply {
             setOnClickListener{
-                val grade= Grades(0,viewModelStudent.student.studentID.toInt(),findViewById<EditText>(R.id.grade_add).toString(),findViewById<EditText>(R.id.why_grade).toString())
+                val grade= Grades(0,viewModelStudent.student.studentID,view.findViewById<EditText>(R.id.grade_add).text.toString(),view.findViewById<EditText>(R.id.why_grade).text.toString())
                 viewModelAdd.AddGrade(grade)
                 view.findNavController().navigate(R.id.action_add_grade_fragment_to_student_fragment)
             }

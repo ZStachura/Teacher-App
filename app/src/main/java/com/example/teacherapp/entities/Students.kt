@@ -16,4 +16,4 @@ data class Students (
     @ColumnInfo(name="surname")
     var studentsSurname: String,
     @ColumnInfo(name = "groupId")
-    var group_id: Int)
+    var group_id: Long)

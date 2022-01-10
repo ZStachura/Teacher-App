@@ -58,13 +58,13 @@ class groups_fragment : Fragment() {
 
         val factoryList = GroupsHandlerFactory((requireNotNull(this.activity).application))
         viewModelGroups=ViewModelProvider(requireActivity(),factoryList).get(GroupsHandler::class.java)
-        val groupsAdapter= GroupsAdapter(viewModelGroups.groups,viewModelGroups)
-        viewModelGroups.groups.observe(viewLifecycleOwner,{groupsAdapter.notifyDataSetChanged()})
+
 
         val factorySubject = SubjectsHandlerFactory((requireNotNull(this.activity).application))
         viewModelSubjects = ViewModelProvider(requireActivity(), factorySubject).get(SubjectsHandler::class.java)
         view.findViewById<TextView>(R.id.one_subject_name).text = viewModelSubjects.subjectName
-
+        val groupsAdapter= GroupsAdapter(viewModelGroups.GetThatGroups(viewModelSubjects.subject.classID),viewModelGroups)
+        viewModelGroups.currentgroups.observe(viewLifecycleOwner,{groupsAdapter.notifyDataSetChanged()})
         val layoutManager= LinearLayoutManager(view.context)
 
         view.findViewById<RecyclerView>(R.id.groupsRecycleView).let {
@@ -82,6 +82,12 @@ class groups_fragment : Fragment() {
         view.findViewById<Button>(R.id.button_create_group).apply {
             setOnClickListener{
                 view.findNavController().navigate(R.id.action_groups_fragment_to_add_group_fragment2)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_back_subject).apply{
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_groups_fragment_to_subjects_fragment)
             }
         }
     }

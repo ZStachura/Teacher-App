@@ -60,7 +60,7 @@ class add_group_fragment : Fragment() {
         viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GroupsHandler::class.java)
         view.findViewById<Button>(R.id.button_add_group).apply {
             setOnClickListener{
-                val group= Groups(0,view.findViewById<EditText>(R.id.group_name_add).text.toString(), subjectView.subjectName)
+                val group= Groups(0,view.findViewById<EditText>(R.id.group_name_add).text.toString(), subjectView.subject.classID)
                 viewModelAdd.AddGroup(group)
                 view.findNavController().navigate(R.id.action_add_group_fragment_to_groups_fragment2)
             }

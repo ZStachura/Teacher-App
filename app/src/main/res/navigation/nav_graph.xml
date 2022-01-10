@@ -82,6 +82,9 @@
         <action
             android:id="@+id/action_student_fragment_to_add_grade_fragment"
             app:destination="@id/add_grade_fragment" />
+        <action
+            android:id="@+id/action_student_fragment_to_grade_details"
+            app:destination="@id/grade_details" />
     </fragment>
     <fragment
         android:id="@+id/subjects_fragment"
@@ -94,5 +97,14 @@
         <action
             android:id="@+id/action_subjects_fragment_to_add_subject_fragment"
             app:destination="@id/add_subject_fragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/grade_details"
+        android:name="com.example.teacherapp.Grade_details"
+        android:label="fragment_grade_details"
+        tools:layout="@layout/fragment_grade_details" >
+        <action
+            android:id="@+id/action_grade_details_to_student_fragment"
+            app:destination="@id/student_fragment" />
     </fragment>
 </navigation>

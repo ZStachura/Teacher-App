@@ -6,6 +6,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
 import com.example.teacherapp.database.Operator_DAO
 import com.example.teacherapp.database.HelperDatabase
+import com.example.teacherapp.entities.Groups
 import com.example.teacherapp.entities.Students
 import com.example.teacherapp.entities.Subjects
 import kotlinx.coroutines.Dispatchers
@@ -17,10 +18,12 @@ class StudentsHandler(application: Application):AndroidViewModel(application) {
     var studentSurname:String? = ""
     var album:String?=""
     var student: Students
+    var currentstudents: LiveData<List<Students>>
     val students: LiveData<List<Students>>
     init{
         operatorDao= HelperDatabase.getInstance(application).operatorDao
         students = operatorDao.GetAllStudents()
+        currentstudents=students
         student = Students(0,"","","",0)
     }
     fun AddStudent(student: Students) {
@@ -32,5 +35,9 @@ class StudentsHandler(application: Application):AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO){
             operatorDao.DeleteStudent(student)
         }
+    }
+    fun GetThatStudents(idgroup: Long):LiveData<List<Students>>{
+        currentstudents=operatorDao.GetGroupStudent(idgroup)
+        return currentstudents
     }
 }

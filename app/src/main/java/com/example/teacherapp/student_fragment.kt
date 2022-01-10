@@ -12,8 +12,6 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.teacherapp.ViewModel.adapters.GradesAdapter
-import com.example.teacherapp.ViewModel.adapters.GroupsAdapter
-import com.example.teacherapp.ViewModel.adapters.StudentsAdapter
 import com.example.teacherapp.ViewModel.factories.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -56,13 +54,13 @@ class student_fragment : Fragment() {
         val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
         viewModelStudents = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
         view.findViewById<TextView>(R.id.one_student_surname).text = viewModelStudents.studentSurname
-        view.findViewById<TextView>(R.id.one_student_name).text = viewModelStudents.studentName
-        view.findViewById<TextView>(R.id.one_student_album).text = viewModelStudents.album
+        view.findViewById<TextView>(R.id.subject_grade).text = viewModelStudents.studentName
+        view.findViewById<TextView>(R.id.subject_name_grade).text = viewModelStudents.album
 
         val factoryGrade = GradesHandlerFactory((requireNotNull(this.activity).application))
         viewModelGrades=ViewModelProvider(requireActivity(),factoryGrade).get(GradesHandler::class.java)
-        val gradesAdapter= GradesAdapter(viewModelGrades.grades,viewModelGrades)
-        viewModelGrades.grades.observe(viewLifecycleOwner,{gradesAdapter.notifyDataSetChanged()})
+        val gradesAdapter= GradesAdapter(viewModelGrades.GetThatGrades(viewModelStudents.student.studentID),viewModelGrades)
+        viewModelGrades.currentgrades.observe(viewLifecycleOwner,{gradesAdapter.notifyDataSetChanged()})
 
         val layoutManager= LinearLayoutManager(view.context)
 
@@ -81,6 +79,12 @@ class student_fragment : Fragment() {
         view.findViewById<Button>(R.id.button_create_grade).apply {
             setOnClickListener{
                 view.findNavController().navigate(R.id.action_student_fragment_to_add_grade_fragment)
+            }
+        }
+
+        view.findViewById<Button>(R.id.button_back_onestudent).apply{
+            setOnClickListener{
+                view.findNavController().navigate(R.id.action_student_fragment_to_onegroup_fragment)
             }
         }
     }

@@ -27,14 +27,15 @@
     <Button
         android:id="@+id/button_create_student"
         android:layout_width="match_parent"
-        android:layout_height="43dp"
+        android:layout_height="23dp"
         android:layout_marginStart="50dp"
         android:background="@null"
         android:fontFamily="@font/rasa"
         android:text="@string/add_student"
         android:textAlignment="viewStart"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_delete_group"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/studentsRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -48,39 +49,45 @@
         android:background="@null"
         android:fontFamily="@font/rasa"
         android:text="@string/delete_group"
-        android:textColor="@color/white"
         android:textAlignment="viewStart"
+        android:textColor="@color/white"
         android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/studentsRecycleView"
+        app:layout_constraintBottom_toTopOf="@+id/button_back_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create_student" />
+        app:layout_constraintTop_toBottomOf="@+id/studentsRecycleView" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studentsRecycleView"
         android:layout_width="304dp"
-        android:layout_height="406dp"
+        android:layout_height="426dp"
         android:layout_marginStart="50dp"
         android:layout_marginEnd="50dp"
-        app:layout_constraintBottom_toTopOf="@+id/imageView"
+        android:layout_marginBottom="23dp"
+        android:background="@null"
+        app:layout_constraintBottom_toTopOf="@+id/button_delete_group"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_delete_group"
-        android:background="@null"/>
+        app:layout_constraintTop_toBottomOf="@+id/button_create_student" />
 
-    <ImageView
-        android:id="@+id/imageView"
+    <Button
+        android:id="@+id/button_back_group"
         android:layout_width="match_parent"
-        android:layout_height="91dp"
-        android:layout_marginBottom="30dp"
-        android:src="@drawable/logoth"
+        android:layout_height="43dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginBottom="10dp"
+        android:background="@null"
+        android:fontFamily="@font/rasa"
+        android:text="@string/back"
+        android:textAlignment="viewStart"
+
+        android:textColor="@color/black"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentsRecycleView"
-        app:layout_constraintVertical_bias="0.885" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

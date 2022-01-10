@@ -15,9 +15,11 @@ class SubjectsHandler(application: Application):AndroidViewModel(application) {
     var subjectName:String? = ""
     var subject:Subjects
     val subjects: LiveData<List<Subjects>>
+    val currentSubject: LiveData<List<Subjects>>
     init{
         operatorDao= HelperDatabase.getInstance(application).operatorDao
         subjects = operatorDao.GetAllSubjects()
+        currentSubject = subjects
         subject = Subjects(0,"")
     }
     fun AddSubject(subject: Subjects) {

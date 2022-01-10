@@ -11,4 +11,5 @@
     <color name="main_light_gray">#CED4DA</color>
     <color name="button_gray">#F8F9FA</color>
     <color name="stroke_dark">#212529</color>
+    <color name="red">#CC1100</color>
 </resources>

@@ -35,6 +35,7 @@ class GradesAdapter(private val grades: LiveData<List<Grades>>, private val view
             viewModel.gradeValue = grades.value?.get(position)?.grade
             viewModel.whyGrade = grades.value?.get(position)?.why_grade
             viewModel.grade = Grades(grades.value?.get(position)?.gradeID!!, grades.value?.get(position)?.student_id!! ,grades.value?.get(position)?.grade!! ,grades.value?.get(position)?.why_grade!!)
+            holder.myView.findNavController().navigate(R.id.action_student_fragment_to_grade_details)
         }
     }
 

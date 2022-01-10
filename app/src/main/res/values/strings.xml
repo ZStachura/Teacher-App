@@ -12,13 +12,18 @@
     <string name="add_student">+ ADD STUDENT</string>
     <string name="new_student">NEW STUDENT</string>
     <string name="student_name">STUDENT NAME</string>
-    <string name="student_surname">STUDENT SURNAME</string>
+    <string name="student_surname">SURNAME</string>
     <string name="delete_student">- DELETE STUDENT</string>
     <string name="student_id">STUDENTS ALBUM NUMBER</string>
     <string name="add_grade">+ ADD GRADE</string>
     <string name="new_grade">NEW GRADE</string>
     <string name="grade_value">GRADE</string>
     <string name="why_grade">TASK NAME</string>
+    <string name="button_delete_grade">- DELETE GRADE</string>
+    <string name="subject">SUBJECT</string>
+    <string name="task">TASK</string>
+    <string name="student">STUDENT</string>
+    <string name="back"> PREVIOUS </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

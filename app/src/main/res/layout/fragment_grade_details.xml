@@ -9,111 +9,126 @@
     android:background="@color/main_dark_gray"
     tools:context=".subjects_fragment">
 
-    <TextView
-        android:id="@+id/one_student_surname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:fontFamily="@font/rasa"
-        android:text="@string/student_surname"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="60sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/subject_grade"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <TextView
         android:id="@+id/subject_grade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="11dp"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/rasa"
-        android:text="@string/student_name"
+        android:text="@string/student"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="50sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/subject_name_grade"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/one_student_surname" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/subject_name_grade"
+        android:id="@+id/student_name_grade"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="21dp"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/rasa"
-        android:text="@string/student_id"
+        android:text="@string/student_name"
         android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:textSize="30sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/button_create_grade"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/subject_grade" />
 
-    <Button
-        android:id="@+id/button_create_grade"
+    <TextView
+        android:id="@+id/grade_grade"
         android:layout_width="match_parent"
-        android:layout_height="23dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="10dp"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
         android:fontFamily="@font/rasa"
-        android:text="@string/add_grade"
-        android:textColor="@color/white"
-        android:textAlignment="viewStart"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_delete_student"
+        android:text="@string/grade_value"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/subject_name_grade" />
+        app:layout_constraintTop_toBottomOf="@id/student_name_grade" />
 
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/gradesRecycleView"
-        android:layout_width="304dp"
-        android:layout_height="326dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="53dp"
-        android:layout_marginEnd="54dp"
-        android:background="@null"
-        app:layout_constraintBottom_toTopOf="@+id/button_delete_student"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button_create_grade" />
-
-    <Button
-        android:id="@+id/button_delete_student"
+    <TextView
+        android:id="@+id/grade_value_grade"
         android:layout_width="match_parent"
-        android:layout_height="23dp"
-        android:layout_marginStart="50dp"
-        android:background="@null"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
         android:fontFamily="@font/rasa"
-        android:text="@string/delete_student"
+        android:text="@string/grade_value"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textAlignment="viewStart"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_back_onestudent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/grade_grade" />
+
+    <TextView
+        android:id="@+id/task_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/rasa"
+        android:text="@string/task"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="50sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/gradesRecycleView" />
+        app:layout_constraintTop_toBottomOf="@id/grade_value_grade"  />
+
+    <TextView
+        android:id="@+id/task_name_grade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="29dp"
+        android:fontFamily="@font/rasa"
+        android:text="@string/why_grade"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/button_delete_grade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/task_grade" />
 
     <Button
-        android:id="@+id/button_back_onestudent"
+        android:id="@+id/button_delete_grade"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="15dp"
+        android:background="@null"
+        android:fontFamily="@font/rasa"
+        android:text="@string/button_delete_grade"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_back_grade"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/task_name_grade" />
+
+    <Button
+        android:id="@+id/button_back_grade"
         android:layout_width="match_parent"
         android:layout_height="43dp"
         android:layout_marginStart="5dp"
@@ -122,8 +137,8 @@
         android:fontFamily="@font/rasa"
         android:text="@string/back"
         android:textAlignment="viewStart"
-        android:textColor="@color/black"
 
+        android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
