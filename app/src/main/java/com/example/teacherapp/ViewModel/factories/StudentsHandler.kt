@@ -19,11 +19,15 @@ class StudentsHandler(application: Application):AndroidViewModel(application) {
     var album:String?=""
     var student: Students
     var currentstudents: LiveData<List<Students>>
+    var newstudents: LiveData<List<Students>>
+    var samestudent: Boolean
     val students: LiveData<List<Students>>
     init{
         operatorDao= HelperDatabase.getInstance(application).operatorDao
         students = operatorDao.GetAllStudents()
         currentstudents=students
+        newstudents=students
+        samestudent=false
         student = Students(0,"","","",0)
     }
     fun AddStudent(student: Students) {
@@ -37,7 +41,20 @@ class StudentsHandler(application: Application):AndroidViewModel(application) {
         }
     }
     fun GetThatStudents(idgroup: Long):LiveData<List<Students>>{
-        currentstudents=operatorDao.GetGroupStudent(idgroup)
+        viewModelScope.launch(Dispatchers.IO){
+        currentstudents=operatorDao.GetGroupStudent(idgroup)}
         return currentstudents
+    }
+
+    fun GetNewStudents(idalbum: String, idgroup: Long):LiveData<List<Students>>{
+        viewModelScope.launch(Dispatchers.IO){
+        newstudents=operatorDao.GetNewStudent(idalbum,idgroup)}
+        return newstudents
+    }
+
+    fun IsStudent(idalbum: String):Boolean{
+        viewModelScope.launch(Dispatchers.IO){
+        samestudent=operatorDao.SameStudent(idalbum)}
+        return samestudent
     }
 }
