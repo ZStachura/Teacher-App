@@ -25,6 +25,8 @@ interface Operator_DAO {
     @Delete
     fun DeleteSubject(subject: Subjects)
 
+
+
     //GROUPS
     @Query("SELECT * FROM groups_table WHERE groups_table.subject_id = :subject ORDER BY groups_table.group_name ASC")
     fun GetSubjectGroup(subject: Long): LiveData<List<Groups>>
@@ -67,5 +69,18 @@ interface Operator_DAO {
 
     @Delete
     fun DeleteGrade(grades: Grades)
+
+
+    @Query("DELETE FROM grades_table ")
+    fun ClearGrades()
+
+    @Query("DELETE FROM students_table ")
+    fun ClearStudents()
+
+    @Query("DELETE FROM groups_table ")
+    fun ClearGroups()
+
+    @Query("DELETE FROM subjects_table ")
+    fun ClearSubjects()
 
 }

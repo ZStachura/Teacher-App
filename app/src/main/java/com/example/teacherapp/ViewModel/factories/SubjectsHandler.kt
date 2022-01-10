@@ -32,4 +32,13 @@ class SubjectsHandler(application: Application):AndroidViewModel(application) {
             operatorDao.DeleteSubject(subject)
         }
     }
+
+    fun Clear(){
+        viewModelScope.launch(Dispatchers.IO){
+            operatorDao.ClearGrades()
+            operatorDao.ClearGroups()
+            operatorDao.ClearStudents()
+            operatorDao.ClearSubjects()
+        }
+    }
 }

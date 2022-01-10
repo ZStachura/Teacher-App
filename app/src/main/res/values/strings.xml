@@ -29,6 +29,10 @@
     <string name="start">START</string>
     <string name="stop">STOP</string>
     <string name="blank"> </string>
+    <string name="clear0">CLEAR ALL</string>
+    <string name="clear1">CLEAR STUDENTS</string>
+    <string name="clear2">CLEAR GROUPS</string>
+    <string name="clear3">CLEAR SUBJECTS</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 

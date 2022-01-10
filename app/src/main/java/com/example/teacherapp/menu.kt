@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
-import android.widget.Switch
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,16 +21,15 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [subjects_fragment.newInstance] factory method to
+ * Use the [menu.newInstance] factory method to
  * create an instance of this fragment.
  */
-class subjects_fragment : Fragment() {
+class menu : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
 
-    private lateinit var viewModelList:SubjectsHandler
-
+    private lateinit var viewModelList: SubjectsHandler
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,33 +44,24 @@ class subjects_fragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.subjects_fragment, container, false)
+        return inflater.inflate(R.layout.fragment_menu, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         val factoryList = SubjectsHandlerFactory((requireNotNull(this.activity).application))
-        viewModelList=ViewModelProvider(requireActivity(),factoryList).get(SubjectsHandler::class.java)
-        val subjectsAdapter= SubjectsAdapter(viewModelList.subjects,viewModelList)
-        viewModelList.subjects.observe(viewLifecycleOwner,{subjectsAdapter.notifyDataSetChanged()})
+        viewModelList= ViewModelProvider(requireActivity(),factoryList).get(SubjectsHandler::class.java)
 
-        val layoutManager=LinearLayoutManager(view.context)
-
-        view.findViewById<RecyclerView>(R.id.subjectsRecycleView).let {
-            it.adapter=subjectsAdapter
-        it.layoutManager=layoutManager
-        }
-
-        view.findViewById<Button>(R.id.button_create_subject).apply {
+        view.findViewById<Button>(R.id.button_clear).apply {
             setOnClickListener{
-                view.findNavController().navigate(R.id.action_subjects_fragment_to_add_subject_fragment)
+                viewModelList.Clear()
             }
         }
 
-        view.findViewById<Button>(R.id.menu).apply {
+        view.findViewById<Button>(R.id.button_back_menu).apply {
             setOnClickListener{
-                view.findNavController().navigate(R.id.action_subjects_fragment_to_menu2)
+                view.findNavController().navigate(R.id.action_menu2_to_subjects_fragment)
             }
         }
 
@@ -85,12 +74,12 @@ class subjects_fragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment subjects_fragment.
+         * @return A new instance of fragment menu.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            subjects_fragment().apply {
+            menu().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

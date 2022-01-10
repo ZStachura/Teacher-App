@@ -45,4 +45,5 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
         currentgroups=operatorDAO.GetSubjectGroup(idsubject)
         return currentgroups
     }
+
 }

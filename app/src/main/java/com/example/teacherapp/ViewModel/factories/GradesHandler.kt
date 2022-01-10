@@ -39,4 +39,5 @@ class GradesHandler(application: Application): AndroidViewModel(application) {
         currentgrades=operatorDao.GetGradeStudent(idstudent)
         return currentgrades
     }
+
 }
