@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.teacherapp.ViewModel.factories.*
@@ -50,6 +52,16 @@ class add_grade_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val gradespinner: Spinner =view.findViewById<Spinner>(R.id.grade_add)
+        ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.choosegrade,
+            R.layout.support_simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            gradespinner.adapter=adapter
+        }
+
         val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
         viewModelStudent = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
 
@@ -57,7 +69,7 @@ class add_grade_fragment : Fragment() {
         viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GradesHandler::class.java)
         view.findViewById<Button>(R.id.button_add_grade).apply {
             setOnClickListener{
-                val grade= Grades(0,viewModelStudent.student.studentID,view.findViewById<EditText>(R.id.grade_add).text.toString(),view.findViewById<EditText>(R.id.why_grade).text.toString())
+                val grade= Grades(0,viewModelStudent.student.studentID,gradespinner.selectedItem.toString(),view.findViewById<EditText>(R.id.why_grade).text.toString())
                 viewModelAdd.AddGrade(grade)
                 view.findNavController().navigate(R.id.action_add_grade_fragment_to_student_fragment)
             }

@@ -5,22 +5,25 @@
     android:id="@+id/frameLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".subjects_fragment"
+    android:layout_gravity="center_horizontal"
     android:background="@color/main_dark_gray"
-    android:layout_gravity="center_horizontal">
+    tools:context=".subjects_fragment">
 
     <TextView
         android:id="@+id/group_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="27dp"
+        android:layout_marginBottom="24dp"
         android:fontFamily="@font/rasa"
         android:text="@string/group_name"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="60sp"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -29,46 +32,31 @@
         android:layout_width="match_parent"
         android:layout_height="23dp"
         android:layout_marginStart="50dp"
+        android:layout_marginTop="8dp"
         android:background="@null"
         android:fontFamily="@font/rasa"
         android:text="@string/add_student"
         android:textAlignment="viewStart"
-        android:textSize="20dp"
         android:textColor="@color/white"
+        android:textSize="20dp"
         app:layout_constraintBottom_toTopOf="@+id/studentsRecycleView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/group_name" />
-
-    <Button
-        android:id="@+id/button_delete_group"
-        android:layout_width="match_parent"
-        android:layout_height="43dp"
-        android:layout_marginStart="50dp"
-        android:background="@null"
-        android:fontFamily="@font/rasa"
-        android:text="@string/delete_group"
-        android:textAlignment="viewStart"
-        android:textColor="@color/white"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/button_back_group"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/studentsRecycleView" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/studentsRecycleView"
         android:layout_width="304dp"
         android:layout_height="426dp"
-        android:layout_marginStart="50dp"
-        android:layout_marginEnd="50dp"
-        android:layout_marginBottom="23dp"
+        android:layout_marginStart="53dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginEnd="54dp"
+        android:layout_marginBottom="1dp"
         android:background="@null"
         app:layout_constraintBottom_toTopOf="@+id/button_delete_group"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button_create_student" />
 
@@ -80,14 +68,90 @@
         android:layout_marginBottom="10dp"
         android:background="@null"
         android:fontFamily="@font/rasa"
+
         android:text="@string/back"
         android:textAlignment="viewStart"
-
         android:textColor="@color/black"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="409dp"
+        android:layout_height="77dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="1dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toTopOf="@+id/button_create_student"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/group_name">
+
+        <TextView
+            android:id="@+id/day_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:fontFamily="@font/rasa"
+            android:text="@string/day"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/start_hour_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/rasa"
+                android:text="@string/start"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/end_hour_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="3"
+                android:fontFamily="@font/rasa"
+                android:text="@string/stop"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button_delete_group"
+        android:layout_width="match_parent"
+        android:layout_height="43dp"
+        android:layout_marginTop="3dp"
+        android:background="@null"
+        android:fontFamily="@font/rasa"
+        android:text="@string/delete_group"
+        android:textAlignment="viewStart"
+        android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_back_group"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/studentsRecycleView" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

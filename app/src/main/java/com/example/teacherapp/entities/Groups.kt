@@ -11,5 +11,11 @@ data class Groups (
     var groupID: Long = 0L,
     @ColumnInfo(name="group_name")
     var groupName: String,
+    @ColumnInfo(name = "day")
+    var day: String,
+    @ColumnInfo(name = "start_hour")
+    var start: String,
+    @ColumnInfo(name = "end_hour")
+    var end: String,
     @ColumnInfo(name="subject_id")
     var subjectID: Long = 0L )

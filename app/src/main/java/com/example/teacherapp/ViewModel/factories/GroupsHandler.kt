@@ -16,6 +16,9 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
     private val operatorDAO : Operator_DAO
     var groupName:String? = ""
     var subjectNam:String?=""
+    var day:String?=""
+    var start:String?=""
+    var end:String?=""
     var group :Groups
     val groups: LiveData<List<Groups>>
     var currentgroups: LiveData<List<Groups>>
@@ -25,7 +28,7 @@ class GroupsHandler(application: Application): AndroidViewModel(application) {
         groups = operatorDAO.GetGroups()
         currentgroups=groups
         currentSubject=Subjects(0L,"")
-        group = Groups(0L,"", 0L)
+        group = Groups(0L,"", "","","",0L)
     }
 
     fun AddGroup(group: Groups) {

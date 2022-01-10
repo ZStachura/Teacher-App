@@ -18,6 +18,7 @@ class StudentsAdapter(private val students: LiveData<List<Students>>, private va
     {
         val textViewName = view.findViewById<TextView>(R.id.student_name)
         val textViewSurname = view.findViewById<TextView>(R.id.student_surname)
+        val textViewAlbum = view.findViewById<TextView>(R.id.albumview)
         val myView = view
     }
 
@@ -29,6 +30,7 @@ class StudentsAdapter(private val students: LiveData<List<Students>>, private va
     override fun onBindViewHolder(holder: StudentsHolder, position: Int) {
         holder.textViewName.text = students.value?.get(position)?.studentName
         holder.textViewSurname.text=students.value?.get(position)?.studentsSurname
+        holder.textViewAlbum.text=students.value?.get(position)?.album
         holder.myView.setOnClickListener(){
             viewModel.studentName = students.value?.get(position)?.studentName
             viewModel.studentSurname = students.value?.get(position)?.studentsSurname

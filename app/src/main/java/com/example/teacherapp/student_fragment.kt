@@ -55,7 +55,6 @@ class student_fragment : Fragment() {
         viewModelStudents = ViewModelProvider(requireActivity(), factoryStudent).get(StudentsHandler::class.java)
         view.findViewById<TextView>(R.id.one_student_surname).text = viewModelStudents.studentSurname
         view.findViewById<TextView>(R.id.subject_grade).text = viewModelStudents.studentName
-        view.findViewById<TextView>(R.id.subject_name_grade).text = viewModelStudents.album
 
         val factoryGrade = GradesHandlerFactory((requireNotNull(this.activity).application))
         viewModelGrades=ViewModelProvider(requireActivity(),factoryGrade).get(GradesHandler::class.java)

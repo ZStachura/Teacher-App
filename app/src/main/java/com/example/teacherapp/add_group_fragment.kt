@@ -5,8 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Spinner
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import com.example.teacherapp.ViewModel.factories.GroupsHandler
@@ -53,6 +55,36 @@ class add_group_fragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val dayspinner: Spinner=view.findViewById<Spinner>(R.id.group_day_add)
+        ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.days,
+            R.layout.support_simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            dayspinner.adapter=adapter
+        }
+
+        val startspinner: Spinner=view.findViewById<Spinner>(R.id.start_hour_add)
+        ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.hours,
+            R.layout.support_simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            startspinner.adapter=adapter
+        }
+
+        val stopspinner: Spinner=view.findViewById<Spinner>(R.id.end_hour_add)
+        ArrayAdapter.createFromResource(
+            this.requireContext(),
+            R.array.hours,
+            R.layout.support_simple_spinner_dropdown_item
+        ).also { adapter ->
+            adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item)
+            stopspinner.adapter=adapter
+        }
+
         val factorySubject = SubjectsHandlerFactory((requireNotNull(this.activity).application))
         subjectView = ViewModelProvider(requireActivity(), factorySubject).get(SubjectsHandler::class.java)
 
@@ -60,7 +92,7 @@ class add_group_fragment : Fragment() {
         viewModelAdd= ViewModelProvider(requireActivity(),factoryAdd).get(GroupsHandler::class.java)
         view.findViewById<Button>(R.id.button_add_group).apply {
             setOnClickListener{
-                val group= Groups(0,view.findViewById<EditText>(R.id.group_name_add).text.toString(), subjectView.subject.classID)
+                val group= Groups(0,view.findViewById<EditText>(R.id.group_name_add).text.toString(),dayspinner.selectedItem.toString(), startspinner.selectedItem.toString(),stopspinner.selectedItem.toString(), subjectView.subject.classID)
                 viewModelAdd.AddGroup(group)
                 view.findNavController().navigate(R.id.action_add_group_fragment_to_groups_fragment2)
             }

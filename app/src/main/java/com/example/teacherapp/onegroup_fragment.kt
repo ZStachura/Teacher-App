@@ -55,12 +55,14 @@ class onegroup_fragment : Fragment() {
         val factoryGroup = GroupsHandlerFactory((requireNotNull(this.activity).application))
         viewModelGroups = ViewModelProvider(requireActivity(), factoryGroup).get(GroupsHandler::class.java)
         view.findViewById<TextView>(R.id.group_name).text = viewModelGroups.groupName
+        view.findViewById<TextView>(R.id.day_view).text=viewModelGroups.day
+        view.findViewById<TextView>(R.id.start_hour_view).text=viewModelGroups.start
+        view.findViewById<TextView>(R.id.end_hour_view).text=viewModelGroups.end
 
         val factoryStudent = StudentsHandlerFactory((requireNotNull(this.activity).application))
         viewModelStudents=ViewModelProvider(requireActivity(),factoryStudent).get(StudentsHandler::class.java)
         val studentsAdapter= StudentsAdapter(viewModelStudents.GetThatStudents(viewModelGroups.group.groupID),viewModelStudents)
         viewModelStudents.currentstudents.observe(viewLifecycleOwner,{studentsAdapter.notifyDataSetChanged()})
-        println(viewModelStudents.currentstudents.value?.size)
 
         val layoutManager= LinearLayoutManager(view.context)
 
